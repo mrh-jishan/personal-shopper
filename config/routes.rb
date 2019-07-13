@@ -26,6 +26,9 @@ Rails.application.routes.draw do
 
 
   scope '/auth' do
+    get '/login', to: 'users#login'
+    post '/login', to: 'users#login'
+    get '/registration', to: 'users#registration'
     resources :transactions
     resources :feedbacks
     resources :orders
@@ -44,4 +47,6 @@ Rails.application.routes.draw do
   resources :product_categories
   resources :addresses
   resources :users
+
+  match "*path", to: "not_found#index", via: :all
 end

@@ -1,6 +1,28 @@
 class UsersController < ApplicationController
   before_action :set_user, only: [:show, :edit, :update, :destroy]
 
+
+  # login user, if the user send a post request, then validate with db and save session
+  def login
+    @user = User.new
+    if request.post?
+      user = User.find_by(email: login_params[:email])
+     if user && user.authenticate(login_params[:password])
+        session[:user_id] = user.id
+        redirect_to '/products'
+      else
+        flash[:danger] ='ERROR: Login unsuccessful'
+        redirect_to '/auth/login'
+      end
+    end
+      
+  end
+
+
+  def registration
+    @user = User.new
+  end
+
   # GET /users
   # GET /users.json
   def index
@@ -70,5 +92,9 @@ class UsersController < ApplicationController
     # Never trust parameters from the scary internet, only allow the white list through.
     def user_params
       params.require(:user).permit(:name, :email, :password, :password_confirmation, :gender, :contact)
+    end
+
+    def login_params
+      params.require(:user).permit(:email, :password)
     end
 end

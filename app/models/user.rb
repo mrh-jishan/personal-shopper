@@ -8,4 +8,5 @@ class User < ApplicationRecord
 
   has_many :buyer_user, :class_name => 'Transaction', :foreign_key => 'buyer_user_id'
   has_many :customer_user, :class_name => 'Transaction', :foreign_key => 'customer_user_id'
+
 end
