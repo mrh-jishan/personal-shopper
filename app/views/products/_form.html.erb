@@ -12,6 +12,15 @@
   <% end %>
 
   <div class="field">
+    <%= form.label :product_categories %>
+    <%= form.select :product_category_id do %>
+      <% @categories.each do |category| %>
+      <%= content_tag(:option, "#{category.name}", value: category.id) %>
+      <% end %>
+    <% end %>
+  </div>
+
+  <div class="field">
     <%= form.label :name %>
     <%= form.text_field :name %>
   </div>

@@ -1,4 +1,8 @@
 Rails.application.routes.draw do
+  resources :transactions
+  resources :feedbacks
+  resources :orders
+  resources :comments
   resources :products
   resources :product_categories
   resources :addresses

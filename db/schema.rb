@@ -10,9 +10,12 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_07_13_082841) do
+ActiveRecord::Schema.define(version: 2019_07_13_123512) do
 
-  create_table "addresses", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+  # These are extensions that must be enabled in order to support this database
+  enable_extension "plpgsql"
+
+  create_table "addresses", force: :cascade do |t|
     t.text "address"
     t.string "state"
     t.integer "postcode"
@@ -23,14 +26,44 @@ ActiveRecord::Schema.define(version: 2019_07_13_082841) do
     t.index ["user_id"], name: "index_addresses_on_user_id"
   end
 
-  create_table "product_categories", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+  create_table "comments", force: :cascade do |t|
+    t.text "comment"
+    t.bigint "product_id"
+    t.bigint "user_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["product_id"], name: "index_comments_on_product_id"
+    t.index ["user_id"], name: "index_comments_on_user_id"
+  end
+
+  create_table "feedbacks", force: :cascade do |t|
+    t.string "name"
+    t.text "feedback"
+    t.string "email"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "orders", force: :cascade do |t|
+    t.bigint "product_id"
+    t.bigint "user_buyer_id"
+    t.bigint "user_customer_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.integer "status"
+    t.index ["product_id"], name: "index_orders_on_product_id"
+    t.index ["user_buyer_id"], name: "index_orders_on_user_buyer_id"
+    t.index ["user_customer_id"], name: "index_orders_on_user_customer_id"
+  end
+
+  create_table "product_categories", force: :cascade do |t|
     t.string "name"
     t.boolean "active"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
 
-  create_table "products", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+  create_table "products", force: :cascade do |t|
     t.string "name"
     t.text "description"
     t.float "price"
@@ -38,11 +71,22 @@ ActiveRecord::Schema.define(version: 2019_07_13_082841) do
     t.boolean "status"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.bigint "product_categories_id"
-    t.index ["product_categories_id"], name: "index_products_on_product_categories_id"
+    t.bigint "product_category_id"
+    t.index ["product_category_id"], name: "index_products_on_product_category_id"
   end
 
-  create_table "users", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+  create_table "transactions", force: :cascade do |t|
+    t.bigint "buyer_user_id"
+    t.bigint "customer_user_id"
+    t.float "total"
+    t.boolean "status"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["buyer_user_id"], name: "index_transactions_on_buyer_user_id"
+    t.index ["customer_user_id"], name: "index_transactions_on_customer_user_id"
+  end
+
+  create_table "users", force: :cascade do |t|
     t.string "name"
     t.string "email"
     t.string "password_digest"
@@ -55,4 +99,7 @@ ActiveRecord::Schema.define(version: 2019_07_13_082841) do
   end
 
   add_foreign_key "addresses", "users"
+  add_foreign_key "comments", "products"
+  add_foreign_key "comments", "users"
+  add_foreign_key "orders", "products"
 end

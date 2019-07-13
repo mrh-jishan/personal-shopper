@@ -1,3 +1,4 @@
 class Product < ApplicationRecord
-    has_many :product_category
+    belongs_to :product_category
+    has_many :comments
 end
