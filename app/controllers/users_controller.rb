@@ -13,9 +13,8 @@ class UsersController < ApplicationController
         else
           redirect_to '/customer/products'
         end
-
       else
-        flash[:danger] = 'ERROR: Login unsuccessful'
+        flash[:danger] = 'ERROR: Login Unsuccessful'
         redirect_to '/auth/login'
       end
     end
@@ -28,10 +27,10 @@ class UsersController < ApplicationController
     address = @user.build_address
     if request.post?
       @user = User.new(user_params)
-      puts "user address is : #{@user.address.postcode}"
+      puts "user address country is : #{@user.address.country}"
       respond_to do |format|
         if @user.save
-          format.html {redirect_to @user, notice: 'User was successfully created.'}
+          format.html {redirect_to '/auth/login', notice: 'User was successfully created.'}
           format.json {render :show, status: :created, location: @user}
         else
           format.html {render :registration}
@@ -52,10 +51,10 @@ class UsersController < ApplicationController
   def show
   end
 
-  # GET /users/new
-  def new
-    @user = User.new
-  end
+  # # GET /users/new
+  # def new
+  #   @user = User.new
+  # end
 
   # GET /users/1/edit
   def edit

@@ -7,10 +7,8 @@ class User < ApplicationRecord
   validates :password, length: {in: 6..20}
   has_secure_password
 
-  validate :address_presence, on: :create
 
-
-  has_one :address
+  has_one :address, dependent: :delete
   accepts_nested_attributes_for :address
   has_many :comments
 
@@ -28,7 +26,4 @@ class User < ApplicationRecord
     self.user_type = USER_TYPES[:MEMBER]
   end
 
-  def address_presence
-    errors.add(:books, "You must add at least one book") unless address.present?
-  end
 end
