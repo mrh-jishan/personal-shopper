@@ -9,7 +9,7 @@ class UsersController < ApplicationController
       user = User.find_by(email: login_params[:email])
       if user && user.authenticate(login_params[:password])
         session[:user_id] = user.id
-        redirect_to '/products'
+        redirect_to 'user/products'
       else
         flash[:danger] = 'ERROR: Login unsuccessful'
         redirect_to '/auth/login'

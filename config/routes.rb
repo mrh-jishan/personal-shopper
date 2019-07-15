@@ -30,24 +30,7 @@ Rails.application.routes.draw do
     post '/login', to: 'users#login'
     get '/registration', to: 'users#registration'
     post '/registration', to: 'users#registration'
-    resources :transactions
-    resources :feedbacks
-    resources :orders
-    resources :comments
-    resources :products
-    resources :product_categories
-    resources :addresses
-    resources :users
+    get '/logout' => 'application#logout'
   end
-
-  resources :transactions
-  resources :feedbacks
-  resources :orders
-  resources :comments
-  resources :products
-  resources :product_categories
-  resources :addresses
-  resources :users
-
   match "*path", to: "not_found#index", via: :all
 end
