@@ -6,3 +6,8 @@ ORDER_STATUES = {
     ADMIN_ACKNOWLEDGED: 5,
     BUYER_RECEIVED_PAYMENT: 6
 }
+
+USER_TYPES = {
+    MEMBER: 'member',
+    ADMIN: 'admin'
+}.freeze
