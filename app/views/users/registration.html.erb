@@ -1,7 +1,7 @@
 <h1 class="text-center">Register New User</h1>
 
 
-<%= form_for @user, url: {action: "registration"}, html: {class: "nifty_form"} do |form| %>
+<%= form_for @user, url: {action: "registration"}, html: {autocomplete: "off"} do |form| %>
 <%#= form_with(model: @user, local: true) do |form| %>
   <% if @user.errors.any? %>
     <div id="error_explanation">

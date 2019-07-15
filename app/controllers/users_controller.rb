@@ -9,7 +9,12 @@ class UsersController < ApplicationController
       user = User.find_by(email: login_params[:email])
       if user && user.authenticate(login_params[:password])
         session[:user_id] = user.id
-        redirect_to 'user/products'
+        if user.user_type === USER_TYPES[:ADMIN]
+          redirect_to '/admin/products'
+        else
+          redirect_to '/customer/products'
+        end
+
       else
         flash[:danger] = 'ERROR: Login unsuccessful'
         redirect_to '/auth/login'
