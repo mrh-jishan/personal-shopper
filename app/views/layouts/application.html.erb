@@ -1,15 +1,12 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>JapanPersonalShopper</title>
+  <title>Japan Personal Shopper | A personal shopping website</title>
   <%= csrf_meta_tags %>
   <%= csp_meta_tag %>
-
   <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
   <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
 </head>
-
-
 <body>
 
 <nav class="navbar navbar-inverse">
@@ -26,12 +23,11 @@
 
     <div id="navbar" class="navbar-collapse collapse">
       <ul class="nav navbar-nav">
-        <li><%= link_to('', '#') %></li>
-        <li><%= link_to('', '#') %></li>
-        <li><%= link_to('', '#') %></li>
+        <li><%= link_to('my product', '#') %></li>
+        <li><%= link_to('users', '#') %></li>
+        <li><%= link_to('new users', '#') %></li>
       </ul>
       <ul class="nav navbar-nav navbar-right">
-
         <li><%= link_to 'Orders Path', orders_path %></li>
         <li><%= link_to("Sign out", comments_path) %></li>
 
@@ -41,8 +37,17 @@
     </div>
   </div>
 </nav>
-<div class="card col-md-6 col-md-offset-3">
-  <%= yield %>
+
+<div class="container">
+  <div class="card col-md-6 col-md-offset-3">
+    <%= yield %>
+  </div>
 </div>
+
+<footer class="container">
+  <div class='text-center'>
+    Japan Personal Shopper @2018
+  </div>
+</footer>
 </body>
 </html>

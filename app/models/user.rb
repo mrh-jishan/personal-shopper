@@ -1,5 +1,6 @@
 class User < ApplicationRecord
   validates :name, :email, :gender, :user_type, :password, presence: true
+  validates :email, uniqueness: true
   validates :contact, :presence => true, :numericality => true, :length => {:minimum => 10, :maximum => 15}
   validates :email, format: {with: URI::MailTo::EMAIL_REGEXP}
   validates_inclusion_of :gender, :in => %w( Male Female )

@@ -4,54 +4,50 @@
       <h2><%= pluralize(user.errors.count, "error") %> prohibited this user from being saved:</h2>
 
       <ul>
-      <% user.errors.full_messages.each do |message| %>
-        <li><%= message %></li>
-      <% end %>
+        <% user.errors.full_messages.each do |message| %>
+          <li><%= message %></li>
+        <% end %>
       </ul>
     </div>
   <% end %>
 
   <div class="form-group">
     <%= form.label :name %>
-    <%= form.text_field :name, :class=>"form-control" %>
+    <%= form.text_field :name, :class => "form-control" %>
   </div>
 
   <div class="form-group">
     <%= form.label :email %>
-    <%= form.text_field :email, :class=>"form-control" %>
+    <%= form.text_field :email, :class => "form-control" %>
   </div>
 
-  <div class="field">
+  <div class="form-group">
     <%= form.label :password %>
-    <%= form.password_field :password, :class=>"form-control" %>
+    <%= form.password_field :password, :class => "form-control" %>
   </div>
 
-  <div class="field">
+  <div class="form-group">
     <%= form.label :password_confirmation %>
-    <%= form.password_field :password_confirmation, :class=>"form-control" %>
-  </div>
-
-  <div class="hidden">
-    <%= form.label :user_type %>
-    <%= form.text_field :user_type %>
+    <%= form.password_field :password_confirmation, :class => "form-control" %>
   </div>
 
 
-  <div class="field">
-    <%= form.label :gender %><br />
-    <%= form.label :gender, "Male", :value => "true"  %>
+  <div class="form-group">
+    <%= form.label :gender %><br/>
+    <%= form.label :gender, "Male", :value => "true" %>
     <%= form.radio_button :gender, "Male" %>
     <%= form.label :gender, "Female", :value => "false" %>
     <%= form.radio_button :gender, "Female" %>
-    
+
   </div>
-  
-  <div class="field">
+
+  <div class="form-group">
     <%= form.label :contact %>
-    <%= form.text_field :contact, :class=>"form-control" %>
+    <%= form.text_field :contact, :class => "form-control" %>
   </div>
 
   <div class="actions">
-    <%= form.submit%>
+    <%= form.submit %>
   </div>
 <% end %>
+<%= link_to 'Back', root_path, :class => 'btn btn-info' %>

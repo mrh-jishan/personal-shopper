@@ -1,6 +1,8 @@
-<h1>Register New User</h1>
+<h1 class="text-center">Register New User</h1>
 
-<%= form_with(model: @user, local: true) do |form| %>
+
+<%= form_for @user, url: {action: "registration"}, html: {class: "nifty_form"} do |form| %>
+<%#= form_with(model: @user, local: true) do |form| %>
   <% if @user.errors.any? %>
     <div id="error_explanation">
       <h2><%= pluralize(@user.errors.count, "error") %> prohibited this user from being saved:</h2>
@@ -28,16 +30,16 @@
     <%= form.password_field :password, :class => "form-control" %>
   </div>
 
-  <div class="form-group">
+  <div class="field form-group">
     <%= form.label :password_confirmation %>
     <%= form.password_field :password_confirmation, :class => "form-control" %>
   </div>
 
   <div class="form-group">
     <%= form.label :gender %><br/>
-    <%= form.label :gender, "Male", :value => "true" %>
-    <%= form.radio_button :gender, "Male" %>
-    <%= form.label :gender, "Female", :value => "false" %>
+    <%= form.label :gender, "Male", :value => "Male" %>
+    <%= form.radio_button :gender, "Male", :checked=>true %>
+    <%= form.label :gender, "Female", :value => "Female" %>
     <%= form.radio_button :gender, "Female" %>
 
   </div>

@@ -10,7 +10,7 @@ Rails.application.routes.draw do
     resources :products
     resources :product_categories
     resources :addresses
-    resources :users  
+    resources :users
   end
 
   scope '/customer' do
@@ -21,7 +21,7 @@ Rails.application.routes.draw do
     resources :products
     resources :product_categories
     resources :addresses
-    resources :users  
+    resources :users
   end
 
 
@@ -29,6 +29,7 @@ Rails.application.routes.draw do
     get '/login', to: 'users#login'
     post '/login', to: 'users#login'
     get '/registration', to: 'users#registration'
+    post '/registration', to: 'users#registration'
     resources :transactions
     resources :feedbacks
     resources :orders
@@ -36,7 +37,7 @@ Rails.application.routes.draw do
     resources :products
     resources :product_categories
     resources :addresses
-    resources :users  
+    resources :users
   end
 
   resources :transactions
