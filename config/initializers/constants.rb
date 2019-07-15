@@ -11,3 +11,9 @@ USER_TYPES = {
     MEMBER: 'member',
     ADMIN: 'admin'
 }.freeze
+
+
+COUNTRIES = [
+    {name: 'MALAYSIA', code: 'MY'},
+    {name: 'JAPAN', code: 'jp'}
+].freeze
