@@ -1,7 +1,6 @@
 class UsersController < ApplicationController
   before_action :set_user, only: [:show, :edit, :update, :destroy]
 
-
   # login user, if the user send a post request, then validate with db and save session
   def login
     @user = User.new
@@ -23,11 +22,13 @@ class UsersController < ApplicationController
 
   end
 
-
+  # register user, if user send a post, it check from request and then build address for the post
   def registration
     @user = User.new
+    address = @user.build_address
     if request.post?
       @user = User.new(user_params)
+      puts "user address is : #{@user.address.postcode}"
       respond_to do |format|
         if @user.save
           format.html {redirect_to @user, notice: 'User was successfully created.'}
@@ -58,21 +59,6 @@ class UsersController < ApplicationController
 
   # GET /users/1/edit
   def edit
-  end
-
-  # POST /users
-  # POST /users.json
-  def create
-    @user = User.new(user_params)
-    respond_to do |format|
-      if @user.save
-        format.html {redirect_to @user, notice: 'User was successfully created.'}
-        format.json {render :show, status: :created, location: @user}
-      else
-        format.html {render :registration}
-        format.json {render json: @user.errors, status: :unprocessable_entity}
-      end
-    end
   end
 
   # PATCH/PUT /users/1
@@ -108,7 +94,7 @@ class UsersController < ApplicationController
 
   # Never trust parameters from the scary internet, only allow the white list through.
   def user_params
-    params.require(:user).permit(:name, :email, :password, :password_confirmation, :gender, :contact)
+    params.require(:user).permit(:name, :email, :password, :password_confirmation, :gender, :contact, address_attributes: [:country, :address, :state, :postcode])
   end
 
   def login_params

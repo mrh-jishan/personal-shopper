@@ -7,8 +7,11 @@ class User < ApplicationRecord
   validates :password, length: {in: 6..20}
   has_secure_password
 
+  validate :address_presence, on: :create
+
 
   has_one :address
+  accepts_nested_attributes_for :address
   has_many :comments
 
   has_many :user_buyer, :class_name => 'Order', :foreign_key => 'user_buyer_id'
@@ -23,5 +26,9 @@ class User < ApplicationRecord
 
   def set_user_type
     self.user_type = USER_TYPES[:MEMBER]
+  end
+
+  def address_presence
+    errors.add(:books, "You must add at least one book") unless address.present?
   end
 end

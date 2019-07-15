@@ -73,7 +73,7 @@
 
             <div class="form-group">
               <%= a.label :country %><br/>
-              <%= select_tag :country, options_for_select(COUNTRIES.map {|country|  [country[:name], country[:code]]}), :class => "form-control" %>
+              <%= select_tag :country, options_for_select(COUNTRIES.map {|country| [country[:name], country[:code]]}), :class => "form-control" %>
             </div>
           <% end %>
         </div>
