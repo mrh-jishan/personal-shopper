@@ -6,9 +6,9 @@ Rails.application.routes.draw do
   resources :transactions
   resources :feedbacks
   resources :orders
-  resources :comments
-  resources :products
-  post 'comment' => 'products#comment'
+  resources :products do
+    resources :comments
+  end
   resources :product_categories
   resources :addresses
   # resources :users
