@@ -13,10 +13,44 @@
  *= require_tree .
  *= require_self
  */
-
 @import "bootstrap-sprockets";
 @import "bootstrap";
 
-#error_explanation{
+#error_explanation {
   width: 100%;
+}
+
+.py-5 {
+  padding: 3rem 0px;
+}
+
+.text-white {
+  color: #ffffff;
+}
+
+.bg-dark {
+  background-color: #343a40 !important;
+}
+
+@media (min-width: 768px) {
+  .navbar {
+    border-radius: 0px;
+  }
+}
+
+.navbar-inverse .navbar-nav > li > a {
+  color: #efe2e2 !important;
+}
+
+
+.main {
+  padding-bottom: 130px;
+  display: flex;
+  justify-content: center;
+  align-content: center;
+  align-items: center;
+}
+
+.mw-50 {
+  min-width: 50%;
 }
