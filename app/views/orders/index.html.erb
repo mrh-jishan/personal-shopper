@@ -1,31 +1,34 @@
-<p id="notice"><%= notice %></p>
+<div class="col-md-7">
+  <p id="notice"><%= notice %></p>
 
-<h1>Orders</h1>
+  <h1>Orders</h1>
 
-<table>
-  <thead>
+  <table class="table">
+    <thead>
     <tr>
       <th>Product</th>
       <th>User buyer</th>
       <th>User customer</th>
       <th colspan="3"></th>
     </tr>
-  </thead>
+    </thead>
 
-  <tbody>
+    <tbody>
     <% @orders.each do |order| %>
       <tr>
         <td><%= order.product %></td>
-        <td><%= order.user_buyer %></td>
-        <td><%= order.user_customer %></td>
+        <td><%= order.user_buyer.name %></td>
+        <td><%= order.user_customer.name %></td>
         <td><%= link_to 'Show', order %></td>
         <td><%= link_to 'Edit', edit_order_path(order) %></td>
-        <td><%= link_to 'Destroy', order, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <td><%= link_to 'Destroy', order, method: :delete, data: {confirm: 'Are you sure?'} %></td>
       </tr>
     <% end %>
-  </tbody>
-</table>
+    </tbody>
+  </table>
 
-<br>
+  <br>
 
-<%= link_to 'New Order', new_order_path %>
+  <%#= link_to 'New Order', new_order_path %>
+
+</div>
