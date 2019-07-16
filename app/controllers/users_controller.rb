@@ -1,88 +1,70 @@
 class UsersController < ApplicationController
-  before_action :set_user, only: [:show, :edit, :update, :destroy]
+  before_action :set_user, only: [:show]
 
-  # login user, if the user send a post request, then validate with db and save session
-  def login
-    @user = User.new
-    if request.post?
-      user = User.find_by(email: login_params[:email])
-      if user && user.authenticate(login_params[:password])
-        session[:user_id] = user.id
-        if user.user_type === USER_TYPES[:ADMIN]
-          redirect_to '/admin/products'
-        else
-          redirect_to '/customer/products'
-        end
-      else
-        flash[:danger] = 'ERROR: Login Unsuccessful'
-        redirect_to '/auth/login'
-      end
-    end
-
-  end
-
-  # register user, if user send a post, it check from request and then build address for the post
-  def registration
+  # GET /users/new
+  def new
     @user = User.new
     address = @user.build_address
-    if request.post?
-      @user = User.new(user_params)
-      puts "user address country is : #{@user.address.country}"
-      respond_to do |format|
-        if @user.save
-          format.html {redirect_to '/auth/login', notice: 'User was successfully created.'}
-          format.json {render :show, status: :created, location: @user}
-        else
-          format.html {render :registration}
-          format.json {render json: @user.errors, status: :unprocessable_entity}
-        end
-      end
-    end
   end
 
-  # GET /users
-  # GET /users.json
-  def index
-    @users = User.all
-  end
 
-  # GET /users/1
-  # GET /users/1.json
-  def show
-  end
-
-  # # GET /users/new
-  # def new
-  #   @user = User.new
-  # end
-
-  # GET /users/1/edit
-  def edit
-  end
-
-  # PATCH/PUT /users/1
-  # PATCH/PUT /users/1.json
-  def update
+  def create
+    @user = User.new(user_params)
     respond_to do |format|
-      if @user.update(user_params)
-        format.html {redirect_to @user, notice: 'User was successfully updated.'}
-        format.json {render :show, status: :ok, location: @user}
+      if @user.save
+        format.html {redirect_to new_session_url, notice: 'User was successfully created.'}
+        format.json {render :'sessions/new', status: :created, location: @user}
       else
-        format.html {render :edit}
+        format.html {render :new}
         format.json {render json: @user.errors, status: :unprocessable_entity}
       end
     end
   end
 
-  # DELETE /users/1
-  # DELETE /users/1.json
-  def destroy
-    @user.destroy
-    respond_to do |format|
-      format.html {redirect_to users_url, notice: 'User was successfully destroyed.'}
-      format.json {head :no_content}
-    end
-  end
+
+  # # GET /users
+  # # GET /users.json
+  # def index
+  #   @users = User.all
+  # end
+  #
+  # # GET /users/1
+  # # GET /users/1.json
+  # def show
+  # end
+  #
+  # # # GET /users/new
+  # # def new
+  # #   @user = User.new
+  # # end
+  #
+  # # GET /users/1/edit
+  # def edit
+  # end
+  #
+  # # PATCH/PUT /users/1
+  # # PATCH/PUT /users/1.json
+  # def update
+  #   respond_to do |format|
+  #     if @user.update(user_params)
+  #       format.html {redirect_to @user, notice: 'User was successfully updated.'}
+  #       format.json {render :show, status: :ok, location: @user}
+  #     else
+  #       format.html {render :edit}
+  #       format.json {render json: @user.errors, status: :unprocessable_entity}
+  #     end
+  #   end
+  # end
+  #
+  # # DELETE /users/1
+  # # DELETE /users/1.json
+  # def destroy
+  #   @user.destroy
+  #   respond_to do |format|
+  #     format.html {redirect_to users_url, notice: 'User was successfully destroyed.'}
+  #     format.json {head :no_content}
+  #   end
+  # end
 
   private
 
@@ -94,9 +76,5 @@ class UsersController < ApplicationController
   # Never trust parameters from the scary internet, only allow the white list through.
   def user_params
     params.require(:user).permit(:name, :email, :password, :password_confirmation, :gender, :contact, address_attributes: [:country, :address, :state, :postcode])
-  end
-
-  def login_params
-    params.require(:user).permit(:email, :password)
   end
 end
