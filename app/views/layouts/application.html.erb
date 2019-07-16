@@ -22,17 +22,16 @@
     </div>
 
     <div id="navbar" class="navbar-collapse collapse">
-      <ul class="nav navbar-nav">
-        <li><%= link_to('my product', '#') %></li>
-        <li><%= link_to('users', '#') %></li>
-        <li><%= link_to('new users', '#') %></li>
-      </ul>
       <ul class="nav navbar-nav navbar-right">
-        <li><%= link_to 'Orders Path', orders_path %></li>
-        <li><%= link_to("Sign out", logout_path) %></li>
+        <% if @user.present? %>
+          <li><%= link_to 'My Orders', orders_path %></li>
+          <li><%= link_to("Sign out", logout_path) %></li>
+        <% end %>
 
-        <li><%= link_to('Sign in', new_session_path) %></li>
-        <li><%= link_to('Registration', new_user_path, data: {turbolinks: false}) %></li>
+        <% if !@user.present? %>
+          <li><%= link_to('Sign in', new_session_path) %></li>
+          <li><%= link_to('Registration', new_user_path, data: {turbolinks: false}) %></li>
+        <% end %>
       </ul>
     </div>
   </div>
