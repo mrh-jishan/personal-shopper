@@ -72,9 +72,9 @@ ActiveRecord::Schema.define(version: 2019_07_16_174412) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.bigint "product_category_id"
-    t.bigint "created_by_id"
-    t.index ["created_by_id"], name: "index_products_on_created_by_id"
+    t.bigint "user_id"
     t.index ["product_category_id"], name: "index_products_on_product_category_id"
+    t.index ["user_id"], name: "index_products_on_user_id"
   end
 
   create_table "transactions", force: :cascade do |t|

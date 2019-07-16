@@ -12,6 +12,8 @@ class User < ApplicationRecord
   accepts_nested_attributes_for :address
   has_many :comments
 
+  has_many :products
+
   has_many :user_buyer, :class_name => 'Order', :foreign_key => 'user_buyer_id'
   has_many :user_customer, :class_name => 'Order', :foreign_key => 'user_customer_id'
 
