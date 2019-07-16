@@ -28,7 +28,7 @@
           <li><%= link_to("Sign out", logout_path) %></li>
         <% end %>
 
-        <% if !@user.present? %>
+        <% unless @user.present? %>
           <li><%= link_to('Sign in', new_session_path) %></li>
           <li><%= link_to('Registration', new_user_path, data: {turbolinks: false}) %></li>
         <% end %>
