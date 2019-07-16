@@ -1,4 +1,5 @@
 class ProductCategoriesController < ApplicationController
+  before_action :require_login
   before_action :set_product_category, only: [:show, :edit, :update, :destroy]
 
   # GET /product_categories
