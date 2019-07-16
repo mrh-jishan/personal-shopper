@@ -1,29 +1,61 @@
-<p id="notice"><%= notice %></p>
+<div class="col-md-10">
+  <div class="panel panel-info">
+    <div class="panel-heading">
+      View Products Details
+    </div>
+    <div class="panel-body">
+      <p id="notice"><%= notice %></p>
 
-<p>
-  <strong>Name:</strong>
-  <%= @product.name %>
-</p>
 
-<p>
-  <strong>Description:</strong>
-  <%= @product.description %>
-</p>
+      <div class="col-md-4 mb-5">
+        <div class="card h-100">
+          <img class="card-img-top" src="http://placehold.it/300x200" alt="">
+          <div class="card-body">
+            <h4 class="card-title"><%= @product.name %></h4>
+            <p class="card-text"><%= @product.description %></p>
+          </div>
+          <div class="card-footer">
+            <%= link_to 'Pick Now', product_path(@product), :class => 'btn btn-primary' %>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
 
-<p>
-  <strong>Price:</strong>
-  <%= @product.price %>
-</p>
+  <div class="row">
+    <div class="col-md-12 ">
+      <div class="comment-wrapper">
+        <div class="panel panel-info">
+          <div class="panel-heading">
+            Comment panel
+          </div>
+          <div class="panel-body">
+            <ul class="media-list">
+              <% @product.comments.each do |comment| %>
+                <li class="media">
+                  <a href="#" class="pull-left">
+                    <img src="https://bootdey.com/img/Content/user_3.jpg" alt="" class="img-circle">
+                  </a>
+                  <div class="media-body">
+                                  <span class="text-muted pull-right">
+                                      <small class="text-muted"><%= comment.created_at %></small>
+                                  </span>
+                    <strong class="text-success"><%= comment.user.name %></strong>
+                    <p><%= comment.comment %></p>
+                  </div>
+                </li>
+              <% end %>
+            </ul>
+            <div class="card-footer pull-right">
+              <%= link_to 'Add Comment', new_comment_path, :class => 'btn btn-primary' %>
+            </div>
+          </div>
+        </div>
+      </div>
 
-<p>
-  <strong>Image:</strong>
-  <%= @product.image %>
-</p>
+    </div>
+  </div>
 
-<p>
-  <strong>Status:</strong>
-  <%= @product.status %>
-</p>
-
-<%= link_to 'Edit', edit_product_path(@product) %> |
-<%= link_to 'Back', products_path %>
+  <%= link_to 'Edit', edit_product_path(@product) %> |
+  <%= link_to 'Back', products_path %>
+</div>

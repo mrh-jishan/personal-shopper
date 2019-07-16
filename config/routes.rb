@@ -8,6 +8,7 @@ Rails.application.routes.draw do
   resources :orders
   resources :comments
   resources :products
+  post 'comment' => 'products#comment'
   resources :product_categories
   resources :addresses
   # resources :users
