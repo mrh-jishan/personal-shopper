@@ -15,6 +15,11 @@
         </div>
       <% end %>
 
+      <div class="image text-center">
+        <%= image_tag(product.image, :class => "card-img-top", :height => 200, :width => 200) %>
+      </div>
+
+
       <div class="form-group">
         <%= form.label :product_category_id %>
         <%= form.select(:product_category_id, options_for_select(@categories.map {|category| [category[:name], category[:id]]}), {}, {:class => "form-control"}) %>

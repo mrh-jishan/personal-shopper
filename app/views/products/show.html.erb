@@ -11,7 +11,7 @@
         <div class="card h-100">
 
           <% if @product.image.attached? %>
-            <%= image_tag(@product.image, :class => "card-img-top") %>
+            <%= image_tag(@product.image, :class => "card-img-top", :height => 200, :width => 200) %>
           <% end %>
           <!--          <img class="card-img-top" src="http://placehold.it/300x200" alt="">-->
           <div class="card-body">
