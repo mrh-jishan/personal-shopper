@@ -27,7 +27,7 @@ class CommentsController < ApplicationController
   # POST /comments.json
   def create
     @comment = Comment.new(comment_params)
-    @comment.user = @user
+    @comment.user = @current_user
     @comment.product = @product
 
     respond_to do |format|

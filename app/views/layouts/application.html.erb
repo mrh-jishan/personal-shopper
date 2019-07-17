@@ -23,12 +23,13 @@
 
     <div id="navbar" class="navbar-collapse collapse">
       <ul class="nav navbar-nav navbar-right">
-        <% if @user.present? %>
+        <% if @current_user.present? %>
           <li><%= link_to 'My Orders', orders_path %></li>
+          <li><%= link_to 'Create Product', new_product_path %></li>
           <li><%= link_to("Sign out", logout_path) %></li>
         <% end %>
 
-        <% unless @user.present? %>
+        <% unless @current_user.present? %>
           <li><%= link_to('Sign in', new_session_path) %></li>
           <li><%= link_to('Registration', new_user_path, data: {turbolinks: false}) %></li>
         <% end %>
