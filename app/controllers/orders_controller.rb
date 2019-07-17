@@ -6,7 +6,8 @@ class OrdersController < ApplicationController
   # GET /orders
   # GET /orders.json
   def index
-    @orders = Order.all
+    @orders = Order.where(:user_buyer => @current_user)
+    puts @orders
   end
 
   # GET /orders/1
@@ -26,7 +27,7 @@ class OrdersController < ApplicationController
   # POST /orders
   # POST /orders.json
   def create
-    @order = Order.new()
+    @order = Order.new
     @order.product = @product
     @order.user_buyer = @current_user
     @order.user_customer = @product.user
@@ -34,7 +35,7 @@ class OrdersController < ApplicationController
 
     respond_to do |format|
       if @order.save
-        format.html {redirect_to @order, notice: 'Order was successfully created.'}
+        format.html {redirect_to orders_path, notice: 'Order was successfully created.'}
         format.json {render :show, status: :created, location: @order}
       else
         format.html {render :new}

@@ -14,12 +14,11 @@
         <div class="card h-100">
           <img class="card-img-top" src="http://placehold.it/300x200" alt="">
           <div class="card-body">
-            <h4 class="card-title"><%= @product.name %></h4>
-            <span class="card-text">$<%= @product.price %></span>
-            <p class="card-text"><%= @product.description %></p>
-          </div>
-          <div class="card-footer">
-            <%#= link_to 'Order Now', new_product_order_path(@product), :class => 'btn btn-primary' %>
+            <h4 class="card-title"><b>Product Name:</b> <%= @product.name %></h4>
+            <span class="card-text"><b>Price:</b> $<%= @product.price %></span>
+            <p class="card-text"><b>Description:</b> <%= @product.description %></p>
+            <p class="card-text"><b>Buyer:</b> <%= @product.user.name %></p>
+
           </div>
         </div>
       </div>

@@ -8,8 +8,8 @@
     <tr>
       <th>Product Name</th>
       <th>Price</th>
-      <th>User buyer</th>
-      <th>User customer</th>
+      <th>Buyer</th>
+      <th>Customer</th>
       <th colspan="2"></th>
     </tr>
     </thead>
@@ -27,13 +27,13 @@
     </tbody>
   </table>
 
-  <div class="panel">
-    <h2>Total Price: <%= @orders.inject(0) {|sum, e| sum + e.product.price} %></h2>
-  </div>
 
-  <br>
-
-  <div class="actions pull-right">
-    <%= link_to 'Checkout Now', transactions_path, :class => 'btn btn-primary' %>
+  <div class="card">
+    <div class="row">
+      <h2 class="pull-right">Total Price: <%= @orders.inject(0) {|sum, e| sum + e.product.price} %></h2>
+    </div>
+    <div class="row pull-right">
+      <%= link_to 'Checkout Now', transactions_path, :class => 'btn btn-primary' %>
+    </div>
   </div>
 </div>
