@@ -1,8 +1,9 @@
 class Product < ApplicationRecord
   belongs_to :product_category
-  has_many :comments
+  has_many :comments, :dependent => :delete_all
   belongs_to :user
   validates :name, :description, :image, :price, :presence => true
+  validates :price, numericality: true
 
   before_save :set_status
 
