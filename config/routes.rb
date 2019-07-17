@@ -26,5 +26,5 @@ Rails.application.routes.draw do
     resources :sessions, only: [:new, :create]
     get '/logout' => 'application#destroy'
   end
-  match "*path", to: "not_found#index", via: :all
+    # match "*path", to: "not_found#index", via: :all
 end
