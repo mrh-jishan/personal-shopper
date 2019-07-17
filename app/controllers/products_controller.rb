@@ -25,23 +25,6 @@ class ProductsController < ApplicationController
   end
 
 
-  # def comment
-  #   @comment = Comment.new(comment_params)
-  #   @comment.user = @user
-  #   @comment.product = @product
-  #
-  #   debugger
-  #   respond_to do |format|
-  #     if @comment.save
-  #       format.html {redirect_to @comment, notice: 'Product was successfully created.'}
-  #       format.json {render :show, status: :created, location: @comment}
-  #     else
-  #       format.html {render :comment}
-  #       format.json {render json: @comment.errors, status: :unprocessable_entity}
-  #     end
-  #   end
-  # end
-
   # POST /products
   # POST /products.json
   def create
@@ -92,10 +75,6 @@ class ProductsController < ApplicationController
   def set_product_categories
     @categories = ProductCategory.all
   end
-
-  # def comment_params
-  #   params.require(:comment).permit(:comment)
-  # end
 
   # Never trust parameters from the scary internet, only allow the white list through.
   def product_params

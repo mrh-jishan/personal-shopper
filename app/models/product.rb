@@ -3,8 +3,10 @@ class Product < ApplicationRecord
   has_many :comments, :dependent => :delete_all
   has_many :orders, :dependent => :delete_all
   belongs_to :user
-  validates :name, :description, :image, :price, :presence => true
+  validates :name, :description, :price, :presence => true
   validates :price, numericality: true
+
+  has_one_attached :image
 
   before_save :set_status
 
