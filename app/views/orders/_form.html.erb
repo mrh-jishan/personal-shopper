@@ -1,39 +1,37 @@
-<div class="panel panel-default">
-  <!--  <div class="panel-heading">Please Enter your login details</div>-->
-  <div class="panel-body">
-    <%= form_with(model: order, local: true) do |form| %>
-      <% if order.errors.any? %>
-        <div id="error_explanation">
-          <h2><%= pluralize(order.errors.count, "error") %> prohibited this order from being saved:</h2>
+<!--  <div class="panel-heading">Please Enter your login details</div>-->
+<div class="panel-body">
+  <%= form_with(model: order, local: true, url: url_for(controller: 'orders', action: 'create')) do |form| %>
+    <% if order.errors.any? %>
+      <div id="error_explanation">
+        <h2><%= pluralize(order.errors.count, "error") %> prohibited this order from being saved:</h2>
 
-          <ul>
-            <% order.errors.full_messages.each do |message| %>
-              <li><%= message %></li>
-            <% end %>
-          </ul>
-        </div>
-      <% end %>
-
-
-      <div class="field">
-        <%= form.label :product_id %>
-        <%= form.text_field :product_id %>
-      </div>
-
-      <div class="field">
-        <%= form.label :user_buyer_id %>
-        <%= form.text_field :user_buyer_id %>
-      </div>
-
-      <div class="field">
-        <%= form.label :user_customer_id %>
-        <%= form.text_field :user_customer_id %>
-      </div>
-
-      <div class="actions">
-        <%= form.submit %>
+        <ul>
+          <% order.errors.full_messages.each do |message| %>
+            <li><%= message %></li>
+          <% end %>
+        </ul>
       </div>
     <% end %>
 
-  </div>
+
+    <!--      <div class="field">-->
+    <%#= form.label :product_id %>
+    <%#= form.text_field :product_id %>
+    <!--      </div>-->
+
+    <!--      <div class="field">-->
+    <%#= form.label :user_buyer_id %>
+    <%#= form.text_field :user_buyer_id %>
+    <!--      </div>-->
+
+    <!--      <div class="field">-->
+    <%#= form.label :user_customer_id %>
+    <%#= form.text_field :user_customer_id %>
+    <!--      </div>-->
+
+    <div class="actions pull-right">
+      <%= form.submit :class => 'btn btn-primary' %>
+    </div>
+  <% end %>
+
 </div>

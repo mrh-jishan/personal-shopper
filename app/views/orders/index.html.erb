@@ -6,7 +6,7 @@
   <table class="table">
     <thead>
     <tr>
-      <th>Product</th>
+      <th>Product Name</th>
       <th>User buyer</th>
       <th>User customer</th>
       <th colspan="3"></th>
@@ -16,7 +16,7 @@
     <tbody>
     <% @orders.each do |order| %>
       <tr>
-        <td><%= order.product %></td>
+        <td><%= order.product.name %></td>
         <td><%= order.user_buyer.name %></td>
         <td><%= order.user_customer.name %></td>
         <td><%= link_to 'Show', order %></td>
