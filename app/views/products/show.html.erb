@@ -15,10 +15,10 @@
           <% end %>
 
           <div class="card-body">
-            <h4 class="card-title"><b>Product Name:</b> <%= @product.name %></h4>
+            <h4 class="card-title"><b>Product Name:</b> <%= @product.name.humanize %></h4>
             <span class="card-text"><b>Price:</b> $<%= @product.price %></span>
             <p class="card-text"><b>Description:</b> <%= @product.description %></p>
-            <p class="card-text"><b>Buyer:</b> <%= @product.user.name %></p>
+            <p class="card-text"><b>Created By:</b> <%= @product.user.name.humanize %></p>
           </div>
           <div class="card-footer">
             <% unless @current_user == @product.user %>
@@ -48,7 +48,7 @@
                     <span class="text-muted pull-right">
                       <small class="text-muted"><%= comment.created_at %></small>
                     </span>
-                    <strong class="text-success"><%= comment.user.name %></strong>
+                    <strong class="text-success"><%= comment.user.name.humanize %></strong>
                     <p><%= comment.comment %></p>
                   </div>
                 </li>
