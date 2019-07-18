@@ -22,6 +22,11 @@ class User < ApplicationRecord
 
   before_save :set_user_type
 
+
+  def user_country
+    COUNTRIES.find {|country| country[:code] == self.address.country}
+  end
+
   private
 
   def set_user_type

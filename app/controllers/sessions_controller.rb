@@ -9,7 +9,7 @@ class SessionsController < ApplicationController
     user = User.find_by(email: login_params[:email])
     if user && user.authenticate(login_params[:password])
       session[:user_id] = user.id
-      redirect_to root_path
+      redirect_to :controller => 'users', :action => :profile, :id => user.id
     else
       flash[:danger] = 'ERROR: Login Unsuccessful'
       redirect_to new_session_path

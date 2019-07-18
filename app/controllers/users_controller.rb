@@ -1,6 +1,5 @@
 class UsersController < ApplicationController
-  skip_before_action :require_login
-  before_action :set_user, only: [:show]
+  skip_before_action :require_login, except: [:profile]
 
   # GET /users/new
   def new
@@ -28,12 +27,13 @@ class UsersController < ApplicationController
   # def index
   #   @users = User.all
   # end
-  #
-  # # GET /users/1
-  # # GET /users/1.json
-  # def show
-  # end
-  #
+
+  # GET /users/1
+  # GET /users/1.json
+  def profile
+    @user = @current_user
+  end
+
   # # # GET /users/new
   # # def new
   # #   @user = User.new
@@ -68,6 +68,7 @@ class UsersController < ApplicationController
   # end
 
   private
+
 
   # Use callbacks to share common setup or constraints between actions.
   def set_user

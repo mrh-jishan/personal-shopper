@@ -42,12 +42,12 @@
               <% @product.comments.each do |comment| %>
                 <li class="media">
                   <a href="#" class="pull-left">
-                    <img src="https://bootdey.com/img/Content/user_3.jpg" alt="" class="img-circle">
+                    <img src="https://bootdey.com/img/Content/user_3.jpg" alt="" height="50" class="img-circle">
                   </a>
                   <div class="media-body">
-                                  <span class="text-muted pull-right">
-                                      <small class="text-muted"><%= comment.created_at %></small>
-                                  </span>
+                    <span class="text-muted pull-right">
+                      <small class="text-muted"><%= comment.created_at %></small>
+                    </span>
                     <strong class="text-success"><%= comment.user.name %></strong>
                     <p><%= comment.comment %></p>
                   </div>
@@ -63,7 +63,5 @@
 
     </div>
   </div>
-
-  <!--  <%#= link_to 'Edit', edit_product_path(@product) %> |-->
   <%= link_to 'Back', root_path %>
 </div>

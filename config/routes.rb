@@ -2,15 +2,6 @@ Rails.application.routes.draw do
 
   root :to => "home#index"
 
-  # resource :admin do
-  #   get "home" => "home#admin"
-  # end
-  #
-  # resource :admin do
-  #   get "home" => "home#customer"
-  # end
-
-
   resources :transactions
   resources :feedbacks
   resources :orders
@@ -21,10 +12,17 @@ Rails.application.routes.draw do
   resources :product_categories
   resources :addresses
 
+  # resource :users, only: [:show]
+  get '/profile' => 'users#profile'
+
   scope :auth do
     resources :users, only: [:new, :create]
     resources :sessions, only: [:new, :create]
     get '/logout' => 'application#destroy'
   end
-    # match "*path", to: "not_found#index", via: :all
+
+  # get '*', :to => 'not_found#index!'
+  # get '*path', to: 'not_found#index', :constraints => lambda {|request| request.path =~ /.+\.users/}
+
+  # match "*path", to: "not_found#index", via: :all
 end

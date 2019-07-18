@@ -1,0 +1,74 @@
+<div class="col-md-10">
+  <div class="panel panel-info">
+    <div class="panel-heading">
+      User Profile Details
+    </div>
+    <div class="panel-body">
+      <p id="notice"><%= notice %></p>
+      <div class="col-md-4 mb-5">
+        <h4 class="card-title"><b>User Name:</b> <%= @user.name %></h4>
+        <p>
+          <strong>Email:</strong>
+          <%= @user.email %>
+        </p>
+
+        <p>
+          <strong>Gender:</strong>
+          <%= @user.gender %>
+        </p>
+
+        <p>
+          <strong>Contact:</strong>
+          <%= @user.contact %>
+        </p>
+
+        <p>
+          <strong>Contact:</strong>
+          <%= @user.user_type %>
+        </p>
+      </div>
+    </div>
+  </div>
+
+  <div class="panel panel-info">
+    <div class="panel-heading">
+      Address Details
+    </div>
+    <div class="panel-body">
+      <p id="notice"><%= notice %></p>
+      <div class="col-md-4 mb-5">
+        <h4 class="card-title"><b>User Name:</b> <%= @user.name %></h4>
+        <p>
+          <strong>Address:</strong>
+          <%= @user.address.address %>
+        </p>
+
+        <p>
+          <strong>State:</strong>
+          <%= @user.address.state %>
+        </p>
+
+        <p>
+          <strong>Postcode:</strong>
+          <%= @user.address.postcode %>
+        </p>
+
+        <p>
+          <strong>Country:</strong>
+          <%= @user.user_country[:name] %>
+        </p>
+      </div>
+    </div>
+  </div>
+  <%#= link_to 'Back', orders_path %>
+
+</div>
+
+
+
+
+
+
+<!--  <%#= link_to 'Edit', edit_user_path(@user) %> |-->
+<%#= link_to 'Back', users_path %>
+

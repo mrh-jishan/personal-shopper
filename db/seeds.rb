@@ -10,8 +10,8 @@
 #
 #
 
-ProductCategory.create(:name => 'test category 01')
-ProductCategory.create(:name => 'test category 02')
-ProductCategory.create(:name => 'test category 03')
-ProductCategory.create(:name => 'test category 04')
-ProductCategory.create(:name => 'test category 05')
+ProductCategory.create(:name => 'test category 01', :active => true)
+ProductCategory.create(:name => 'test category 02', :active => true)
+ProductCategory.create(:name => 'test category 03', :active => true)
+ProductCategory.create(:name => 'test category 04', :active => true)
+ProductCategory.create(:name => 'test category 05', :active => true)
