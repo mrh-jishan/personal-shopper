@@ -6,13 +6,11 @@ class OrdersController < ApplicationController
   # GET /orders
   # GET /orders.json
   def index
-    # @orders = Order.where(:user_buyer => @current_user)
-    @orders = Order.all
-
-
+    @orders = Order.where(:status => [ORDER_STATUES[:CUSTOMER_PAID]..ORDER_STATUES[:BUYER_RECEIVED_PAYMENT]])
+    @unpaid_orders = Order.where(:user_customer => @current_user, :status => ORDER_STATUES[:CREATED])
 
     @transaction = Transaction.new
-    @transaction.total = @orders.inject(0) {|sum, e| sum + e.product.price}
+    @transaction.total = @unpaid_orders.inject(0) {|sum, e| sum + e.product.price}
     @transaction.customer_user = @current_user
   end
 

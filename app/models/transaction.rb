@@ -10,8 +10,7 @@ class Transaction < ApplicationRecord
   private
 
   def change_user_order_to_paid
-    self.customer_user.user_buyer.each do |order|
-      puts "customer  orders #{order}"
+    self.customer_user.user_customer.each do |order|
       order.update_order_to_paid
     end
   end
