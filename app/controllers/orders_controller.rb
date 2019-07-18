@@ -6,7 +6,10 @@ class OrdersController < ApplicationController
   # GET /orders
   # GET /orders.json
   def index
-    @orders = Order.where(:user_buyer => @current_user)
+    # @orders = Order.where(:user_buyer => @current_user)
+    @orders = Order.all
+
+
 
     @transaction = Transaction.new
     @transaction.total = @orders.inject(0) {|sum, e| sum + e.product.price}
