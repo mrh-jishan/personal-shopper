@@ -12,7 +12,11 @@
 
       <div class="col-md-4 mb-5">
         <div class="card h-100">
-          <img class="card-img-top" src="http://placehold.it/300x200" alt="">
+
+          <% if @product.image.attached? %>
+            <%= image_tag(@product.image, :class => "card-img-top", :height => 200, :width => 200) %>
+          <% end %>
+
           <div class="card-body">
             <h4 class="card-title"><b>Product Name:</b> <%= @product.name %></h4>
             <span class="card-text"><b>Price:</b> $<%= @product.price %></span>

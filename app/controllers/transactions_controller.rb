@@ -26,7 +26,6 @@ class TransactionsController < ApplicationController
   # POST /transactions.json
   def create
     @transaction = Transaction.new(transaction_params)
-    @transaction.ord
 
     respond_to do |format|
       if @transaction.save
