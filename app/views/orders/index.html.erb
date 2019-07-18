@@ -30,10 +30,10 @@
 
   <div class="card">
     <div class="row">
-      <h2 class="pull-right">Total Price: <%= @orders.inject(0) {|sum, e| sum + e.product.price} %></h2>
+      <h3 class="pull-right">Total Price: <%= @orders.inject(0) {|sum, e| sum + e.product.price} %></h3>
     </div>
     <div class="row pull-right">
-      <%= link_to 'Checkout Now', transactions_path, :class => 'btn btn-primary' %>
+      <%= link_to 'Checkout Now', transactions_path(:transaction => {:customer_user_id => @transaction.customer_user.id, :total => @transaction.total, :status => true}), method: :post, data: {confirm: 'Are you sure?'}, :class => 'btn btn-primary' %>
     </div>
   </div>
 </div>

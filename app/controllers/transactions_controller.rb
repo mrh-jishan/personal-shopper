@@ -5,7 +5,7 @@ class TransactionsController < ApplicationController
   # GET /transactions
   # GET /transactions.json
   def index
-    @transactions = Transaction.all
+    @transactions = Transaction.where(:customer_user => @current_user)
   end
 
   # GET /transactions/1
@@ -26,6 +26,7 @@ class TransactionsController < ApplicationController
   # POST /transactions.json
   def create
     @transaction = Transaction.new(transaction_params)
+    @transaction.ord
 
     respond_to do |format|
       if @transaction.save
@@ -71,6 +72,6 @@ class TransactionsController < ApplicationController
 
   # Never trust parameters from the scary internet, only allow the white list through.
   def transaction_params
-    params.require(:transaction).permit(:buyer_user_id, :customer_user_id, :total, :status)
+    params.require(:transaction).permit(:customer_user_id, :total, :status)
   end
 end
