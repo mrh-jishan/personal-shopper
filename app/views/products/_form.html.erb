@@ -15,10 +15,11 @@
         </div>
       <% end %>
 
-      <div class="image text-center">
-        <%= image_tag(product.image, :class => "card-img-top", :height => 200, :width => 200) %>
-      </div>
-
+      <% if product.image.attached? %>
+        <div class="image text-center">
+          <%= image_tag(product.image, :class => "card-img-top", :height => 200, :width => 200) %>
+        </div>
+      <% end %>
 
       <div class="form-group">
         <%= form.label :product_category_id %>
