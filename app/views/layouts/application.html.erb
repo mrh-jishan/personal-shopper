@@ -54,6 +54,16 @@
               <ul class="dropdown-menu" aria-labelledby="dropdownMenuLink">
                 <li><%= link_to 'Create New Product', new_product_path %></li>
                 <li><%= link_to 'Products', :controller => :products, :action => :index %></li>
+              </ul>
+            </li>
+
+
+            <li>
+              <a class="btn btn-secondary dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                Order Management
+              </a>
+
+              <ul class="dropdown-menu" aria-labelledby="dropdownMenuLink">
                 <li><%= link_to 'Orders', orders_path %></li>
                 <li><%= link_to 'Transactions', transactions_path %></li>
               </ul>
@@ -62,8 +72,19 @@
             <!--            <li><%#= link_to 'My Orders', orders_path %></li>-->
             <!--            <li><%#= link_to 'My Products', :controller => :products, :action => :index %></li>-->
           <% end %>
-          <li><%= link_to 'Profile', :controller => 'users', :action => :profile %></li>
-          <li><%= link_to("Sign out", logout_path) %></li>
+
+
+          <li>
+            <a class="btn btn-secondary dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+              Profile
+            </a>
+
+            <ul class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+              <li><%= link_to 'My Profile', :controller => 'users', :action => :profile %></li>
+              <li><%= link_to("Sign out", logout_path) %></li>
+            </ul>
+          </li>
+
         <% end %>
 
         <% unless @current_user.present? %>
