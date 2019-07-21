@@ -1,7 +1,8 @@
 Rails.application.routes.draw do
 
   root :to => "home#index"
-
+  get "contact" => "home#new"
+  post "contact" => "home#create"
   get "admin/products/" => "products#products"
 
 
