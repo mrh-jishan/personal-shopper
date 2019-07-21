@@ -16,13 +16,13 @@ class ProductsController < ApplicationController
   def approve
     product = Product.find(params[:product_id])
     product.update_columns(status: PRODUCT_STATUS[:APPROVED])
-    redirect_to products_url
+    redirect_to admin_products_url
   end
 
   def reject
     product = Product.find(params[:product_id])
     product.update_columns(status: PRODUCT_STATUS[:REJECTED])
-    redirect_to products_url
+    redirect_to admin_products_url
   end
 
   # GET /products/1
