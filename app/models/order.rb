@@ -11,7 +11,7 @@ class Order < ApplicationRecord
   end
 
   def update_order_to_paid
-    self.status = ORDER_STATUES[:CUSTOMER_PAID]
+    self.status = ORDER_STATUES[:PAID]
     save
   end
 

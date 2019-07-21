@@ -43,11 +43,24 @@
       <ul class="nav navbar-nav navbar-right">
         <% if @current_user.present? %>
           <% if @current_user.user_type == USER_TYPES[:ADMIN] %>
-            <li><%= link_to 'Products List',  :controller => :products, :action => :products, :method => :get %></li>
+            <li><%= link_to 'Products List', :controller => :products, :action => :products, :method => :get %></li>
           <% else %>
-            <li><%= link_to 'My Transactions', transactions_path %></li>
-            <li><%= link_to 'My Orders', orders_path %></li>
-            <li><%= link_to 'My Products', :controller => :products, :action => :index %></li>
+
+            <li>
+              <a class="btn btn-secondary dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                Products Management
+              </a>
+
+              <ul class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+                <li><%= link_to 'Create New Product', new_product_path %></li>
+                <li><%= link_to 'Products', :controller => :products, :action => :index %></li>
+                <li><%= link_to 'Orders', orders_path %></li>
+                <li><%= link_to 'Transactions', transactions_path %></li>
+              </ul>
+            </li>
+            <!--            <li><%#= link_to 'My Transactions', transactions_path %></li>-->
+            <!--            <li><%#= link_to 'My Orders', orders_path %></li>-->
+            <!--            <li><%#= link_to 'My Products', :controller => :products, :action => :index %></li>-->
           <% end %>
           <li><%= link_to 'Profile', :controller => 'users', :action => :profile %></li>
           <li><%= link_to("Sign out", logout_path) %></li>

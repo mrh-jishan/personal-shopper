@@ -21,7 +21,7 @@
             <p class="card-text"><b>Created By:</b> <%= @product.user.name.humanize %></p>
           </div>
           <div class="card-footer">
-            <% unless @current_user == @product.user %>
+            <% unless @current_user == @product.user || @current_user.user_type == USER_TYPES[:ADMIN] %>
               <%= link_to 'Pick Order Now', new_product_order_path(@product), :class => 'btn btn-primary' %>
             <% end %>
           </div>

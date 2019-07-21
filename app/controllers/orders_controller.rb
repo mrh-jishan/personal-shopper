@@ -6,8 +6,10 @@ class OrdersController < ApplicationController
   # GET /orders
   # GET /orders.json
   def index
-    @orders = Order.where(:status => [ORDER_STATUES[:CUSTOMER_PAID]..ORDER_STATUES[:BUYER_RECEIVED_PAYMENT]])
+    @orders = Order.where(:status => [ORDER_STATUES[:PAID]..ORDER_STATUES[:BUYER_RECEIVED_PAYMENT]], :user_buyer => @current_user)
     @unpaid_orders = Order.where(:user_customer => @current_user, :status => ORDER_STATUES[:CREATED])
+
+    @my_orders = Order.where(:user_customer => @current_user)
 
     @transaction = Transaction.new
     @transaction.total = @unpaid_orders.inject(0) {|sum, e| sum + e.product.price}
@@ -39,6 +41,8 @@ class OrdersController < ApplicationController
 
     respond_to do |format|
       if @order.save
+        @product.update_columns(status: PRODUCT_STATUS[:PICK_UP])
+
         format.html {redirect_to orders_path, notice: 'Order was successfully created.'}
         format.json {render :show, status: :created, location: @order}
       else

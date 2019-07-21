@@ -19,7 +19,8 @@
 
           <div class="card-body">
             <h4 class="card-title"><b>Product Name:</b> <%= @product.name %></h4>
-            <span class="card-text"><b>Price:</b> $<%= @product.price %></span>
+            <p class="card-text"><b>Category:</b> $<%= @product.product_category.name %></p>
+            <p class="card-text"><b>Price:</b> $<%= @product.price %></p>
             <p class="card-text"><b>Description:</b> <%= @product.description %></p>
             <p class="card-text"><b>Buyer:</b> <%= @product.user.name %></p>
 
@@ -29,7 +30,4 @@
     </div>
   </div>
   <%= render 'form', order: @order %>
-
-  <%#= link_to 'Back', orders_path %>
-
 </div>

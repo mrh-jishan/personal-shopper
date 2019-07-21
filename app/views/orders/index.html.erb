@@ -24,7 +24,43 @@
           <td><%= order.user_buyer.name %></td>
           <td><%= order.user_customer.name %></td>
           <td><%= order.order_status %></td>
-          <% if order.status == ORDER_STATUES[:CUSTOMER_PAID] %>
+          <% if order.status == ORDER_STATUES[:PAID] %>
+            <td><%= link_to 'Deliver Order', order, method: :delete, data: {confirm: 'Are you sure?'}, :class => 'btn btn-info btn-sm' %></td>
+          <% end %>
+
+          <% if order.status == ORDER_STATUES[:CREATED] %>
+            <td><%= link_to 'Delete Order', order, method: :delete, data: {confirm: 'Are you sure?'}, :class => 'btn btn-danger btn-sm' %></td>
+          <% end %>
+        </tr>
+      <% end %>
+      </tbody>
+    </table>
+  </div>
+
+
+  <div class="panel panel-default">
+    <div class="panel-heading">My Orders</div>
+    <table class="table">
+      <thead>
+      <tr>
+        <th>Product Name</th>
+        <th>Price</th>
+        <th>Buyer</th>
+        <th>Customer</th>
+        <th>Status</th>
+        <th colspan="2">Action</th>
+      </tr>
+      </thead>
+
+      <tbody>
+      <% @my_orders.each do |order| %>
+        <tr>
+          <td><%= order.product.name %></td>
+          <td><%= order.product.price %></td>
+          <td><%= order.user_buyer.name %></td>
+          <td><%= order.user_customer.name %></td>
+          <td><%= order.order_status %></td>
+          <% if order.status == ORDER_STATUES[:PAID] %>
             <td><%= link_to 'Deliver Order', order, method: :delete, data: {confirm: 'Are you sure?'}, :class => 'btn btn-info btn-sm' %></td>
           <% end %>
 
@@ -39,47 +75,47 @@
 
   <%# if @unpaid_orders.inject(0) {|sum, e| sum + e.product.price} < 0 %>
 
-    <div class="panel panel-default">
-      <div class="panel-heading">Your Orders Your have made</div>
-      <table class="table">
-        <thead>
+  <div class="panel panel-default">
+    <div class="panel-heading">Your Orders which you need to pay</div>
+    <table class="table">
+      <thead>
+      <tr>
+        <th>Product Name</th>
+        <th>Price</th>
+        <th>Buyer</th>
+        <th>Customer</th>
+        <th>Status</th>
+        <!--          <th colspan="2">Action</th>-->
+      </tr>
+      </thead>
+
+      <tbody>
+      <% @unpaid_orders.each do |order| %>
         <tr>
-          <th>Product Name</th>
-          <th>Price</th>
-          <th>Buyer</th>
-          <th>Customer</th>
-          <th>Status</th>
-          <!--          <th colspan="2">Action</th>-->
+          <td><%= order.product.name %></td>
+          <td><%= order.product.price %></td>
+          <td><%= order.user_buyer.name %></td>
+          <td><%= order.user_customer.name %></td>
+          <td><%= order.order_status %></td>
+          <%# if order.status == ORDER_STATUES[:CREATED] %>
+          <!--              <td><%#= link_to 'Delete Order', order, method: :delete, data: {confirm: 'Are you sure?'}, :class => 'btn btn-danger btn-sm' %></td>-->
+          <%# end %>
         </tr>
-        </thead>
+      <% end %>
+      </tbody>
+    </table>
 
-        <tbody>
-        <% @unpaid_orders.each do |order| %>
-          <tr>
-            <td><%= order.product.name %></td>
-            <td><%= order.product.price %></td>
-            <td><%= order.user_buyer.name %></td>
-            <td><%= order.user_customer.name %></td>
-            <td><%= order.order_status %></td>
-            <%# if order.status == ORDER_STATUES[:CREATED] %>
-            <!--              <td><%#= link_to 'Delete Order', order, method: :delete, data: {confirm: 'Are you sure?'}, :class => 'btn btn-danger btn-sm' %></td>-->
-            <%# end %>
-          </tr>
-        <% end %>
-        </tbody>
-      </table>
+  </div>
 
+
+  <div class="card">
+    <div class="row">
+      <h3 class="pull-right">Total Price: <%= @unpaid_orders.inject(0) {|sum, e| sum + e.product.price} %></h3>
     </div>
-
-
-    <div class="card">
-      <div class="row">
-        <h3 class="pull-right">Total Price: <%= @unpaid_orders.inject(0) {|sum, e| sum + e.product.price} %></h3>
-      </div>
-      <div class="row pull-right">
-        <%= link_to 'Pay Now', transactions_path(:transaction => {:customer_user_id => @transaction.customer_user.id, :total => @transaction.total, :status => true}), method: :post, data: {confirm: 'Are you sure?'}, :class => 'btn btn-primary' %>
-      </div>
+    <div class="row pull-right">
+      <%= link_to 'Pay Now', transactions_path(:transaction => {:customer_user_id => @transaction.customer_user.id, :total => @transaction.total, :status => true}), method: :post, data: {confirm: 'Are you sure?'}, :class => 'btn btn-primary' %>
     </div>
+  </div>
 
   <%# end %>
 </div>
