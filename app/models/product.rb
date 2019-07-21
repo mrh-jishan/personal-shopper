@@ -5,10 +5,10 @@ class Product < ApplicationRecord
   belongs_to :user
   validates :name, :description, :price, :presence => true
   validates :price, numericality: true
-
   has_one_attached :image
 
   before_save :set_status
+
 
   def product_status
     PRODUCT_STATUS.key(self.status).to_s.humanize

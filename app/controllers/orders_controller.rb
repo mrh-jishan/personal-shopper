@@ -9,7 +9,7 @@ class OrdersController < ApplicationController
     @orders = Order.where(:status => [ORDER_STATUES[:PAID]..ORDER_STATUES[:BUYER_RECEIVED_PAYMENT]], :user_buyer => @current_user)
     @unpaid_orders = Order.where(:user_customer => @current_user, :status => ORDER_STATUES[:CREATED])
 
-    @my_orders = Order.where(:user_customer => @current_user)
+    @my_orders = Order.where(:user_buyer => @current_user).or(Order.where(:user_customer => @current_user))
 
     @transaction = Transaction.new
     @transaction.total = @unpaid_orders.inject(0) {|sum, e| sum + e.product.price}
