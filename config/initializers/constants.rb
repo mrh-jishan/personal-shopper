@@ -5,13 +5,14 @@ ORDER_STATUES = {
     CUSTOMER_REVEIVED: 4,
     ADMIN_ACKNOWLEDGED: 5,
     BUYER_RECEIVED_PAYMENT: 6
-}
+}.freeze
 
 PRODUCT_STATUS = {
     CREATED: 1,
     APPROVED: 2,
-    PICK_UP: 3,
-}
+    REJECTED: 3,
+    PICK_UP: 4,
+}.freeze
 
 USER_TYPES = {
     MEMBER: 'member',

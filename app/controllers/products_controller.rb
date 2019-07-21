@@ -9,6 +9,22 @@ class ProductsController < ApplicationController
     @products = Product.where(:user => @current_user)
   end
 
+  def products
+    @products = Product.all
+  end
+
+  def approve
+    product = Product.find(params[:product_id])
+    product.update_columns(status: PRODUCT_STATUS[:APPROVED])
+    redirect_to products_url
+  end
+
+  def reject
+    product = Product.find(params[:product_id])
+    product.update_columns(status: PRODUCT_STATUS[:REJECTED])
+    redirect_to products_url
+  end
+
   # GET /products/1
   # GET /products/1.json
   def show
@@ -68,6 +84,7 @@ class ProductsController < ApplicationController
   private
 
   # Use callbacks to share common setup or constraints between actions.
+
   def set_product
     @product = Product.find(params[:id])
   end

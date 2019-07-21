@@ -1,0 +1,46 @@
+<div class="col-md-12">
+  <p id="notice"><%= notice %></p>
+
+  <h1 class="text-center">View All Products List - Admin</h1>
+  <hr>
+
+  <table class="table">
+    <thead>
+    <tr>
+      <th>Name</th>
+      <th>Created By</th>
+      <th>Category</th>
+      <th>Description</th>
+      <th>Price</th>
+      <th>Image</th>
+      <th>Status</th>
+      <th>Action</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    <% @products.each do |product| %>
+      <tr>
+        <td><%= product.name %></td>
+        <td><%= product.user.name %></td>
+        <td><%= product.product_category.name %></td>
+        <td><%= product.description %></td>
+        <td><%= product.price %></td>
+        <td>
+          <% if product.image.attached? %>
+            <%= image_tag(product.image, :height => 50, :width => 50) %>
+          <% end %>
+        </td>
+        <td><%= product.product_status %></td>
+        <% if product.status == PRODUCT_STATUS[:CREATED] %>
+          <td>
+            <%= link_to 'Approve', product_approve_path(product), :method => :put, :action => :approve, data: {confirm: 'Are you sure?'}, :class => 'btn btn-primary btn-sm' %>
+            <%= link_to 'Reject', product_reject_path(product), :method => :put, :action => :reject, data: {confirm: 'Are you sure?'}, :class => 'btn btn-danger btn-sm' %>
+
+          </td>
+        <% end %>
+      </tr>
+    <% end %>
+    </tbody>
+  </table>
+</div>

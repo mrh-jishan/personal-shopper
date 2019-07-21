@@ -2,10 +2,16 @@ Rails.application.routes.draw do
 
   root :to => "home#index"
 
+  scope :admin do
+    get :products, :to => "products#products"
+  end
+
   resources :transactions
   resources :feedbacks
   resources :orders
   resources :products do
+    put :approve, :to => "products#approve"
+    put :reject, :to => "products#reject"
     resources :comments
     resources :orders
   end

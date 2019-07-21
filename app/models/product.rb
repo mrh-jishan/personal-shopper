@@ -10,6 +10,9 @@ class Product < ApplicationRecord
 
   before_save :set_status
 
+  def product_status
+    PRODUCT_STATUS.key(self.status).to_s.humanize
+  end
 
   private
 
