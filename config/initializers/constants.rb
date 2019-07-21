@@ -7,6 +7,12 @@ ORDER_STATUES = {
     BUYER_RECEIVED_PAYMENT: 6
 }
 
+PRODUCT_STATUS = {
+    CREATED: 1,
+    APPROVED: 2,
+    PICK_UP: 3,
+}
+
 USER_TYPES = {
     MEMBER: 'member',
     ADMIN: 'admin'

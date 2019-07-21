@@ -14,6 +14,6 @@ class Product < ApplicationRecord
   private
 
   def set_status
-    self.status = true
+    self.status = PRODUCT_STATUS[:CREATED]
   end
 end

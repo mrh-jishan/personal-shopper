@@ -15,3 +15,9 @@ ProductCategory.create(:name => 'test category 02', :active => true)
 ProductCategory.create(:name => 'test category 03', :active => true)
 ProductCategory.create(:name => 'test category 04', :active => true)
 ProductCategory.create(:name => 'test category 05', :active => true)
+
+
+admin = User.create(:name => 'admin', :email => 'admin@gmail.com', :gender => 'Male', :password => 'admin@1234', :contact => '01126747564', :user_type => USER_TYPES[:ADMIN])
+
+Address.create(:country => 'MY', :address => 'address', :state => 'state', :postcode => 43300, :user => admin)
+

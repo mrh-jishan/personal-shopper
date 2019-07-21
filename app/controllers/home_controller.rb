@@ -4,5 +4,6 @@ class HomeController < ApplicationController
 
   def index
     @products = Product.where(:product_category => ProductCategory.find(params[:category])) rescue Product.all
+    @products = @products.where(:status => PRODUCT_STATUS[:APPROVED])
   end
 end

@@ -44,7 +44,8 @@
         <% if @current_user.present? %>
           <li><%= link_to 'My Transactions', transactions_path %></li>
           <li><%= link_to 'My Orders', orders_path %></li>
-          <li><%= link_to 'Create Product', new_product_path %></li>
+<!--          <li><%#= link_to 'Create Product', new_product_path %></li>-->
+          <li><%= link_to 'My Products', :controller => :products, :action => :index %></li>
           <li><%= link_to 'Profile', :controller => 'users', :action => :profile %></li>
           <li><%= link_to("Sign out", logout_path) %></li>
         <% end %>
