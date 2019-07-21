@@ -1,26 +1,27 @@
 <div class="col-md-12">
-  <% @products.each do |product| %>
-    <div class="col-md-4 mb-5">
-      <div class="card h-100">
-
-        <% if product.image.attached? %>
-          <%= image_tag(product.image, :class => "card-img-top", :height => 200, :width => 200) %>
-        <% end %>
-        <div class="card-body">
-          <h4 class="card-title">Product Name: <%= product.name.humanize %></h4>
-          <p class="card-text">Category: $<%= product.product_category.name %></p>
-          <p class="card-text">Price: $<%= product.price %></p>
-          <p class="card-text">Description: <%= product.description %></p>
-          <p class="bold">Created By: <%= product.user.name.humanize %></p>
-        </div>
-        <div class="card-footer">
-          <%= link_to 'View Details', product_path(product), :class => 'btn btn-primary btn-sm' %>
-          <% if product.user == @current_user %>
-            <%= link_to 'Edit Details', edit_product_path(product), :class => 'btn btn-info btn-sm' %>
-            <%= link_to 'Destroy', product, method: :delete, data: {confirm: 'Are you sure?'}, :class => 'btn btn-danger btn-sm' %>
+  <div class="row">
+    <% @products.each do |product| %>
+      <div class="col-md-4 mb-5">
+        <div class="card h-100">
+          <% if product.image.attached? %>
+            <%= image_tag(product.image, :class => "card-img-top", :height => 200, :width => 200) %>
           <% end %>
+          <div class="card-body">
+            <h4 class="card-title">Product Name: <%= product.name.humanize %></h4>
+            <p class="card-text">Category: $<%= product.product_category.name %></p>
+            <p class="card-text">Price: $<%= product.price %></p>
+            <p class="card-text">Description: <%= product.description %></p>
+            <p class="bold">Created By: <%= product.user.name.humanize %></p>
+          </div>
+          <div class="card-footer">
+            <%= link_to 'View Details', product_path(product), :class => 'btn btn-primary btn-sm' %>
+            <% if product.user == @current_user %>
+              <%= link_to 'Edit Details', edit_product_path(product), :class => 'btn btn-info btn-sm' %>
+              <%= link_to 'Destroy', product, method: :delete, data: {confirm: 'Are you sure?'}, :class => 'btn btn-danger btn-sm' %>
+            <% end %>
+          </div>
         </div>
       </div>
-    </div>
-  <% end %>
+    <% end %>
+  </div>
 </div>
