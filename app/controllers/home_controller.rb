@@ -3,6 +3,6 @@ class HomeController < ApplicationController
   before_action :current_user
 
   def index
-    @products = Product.all
+    @products = Product.where(:product_category => ProductCategory.find(params[:category])) rescue Product.all
   end
 end

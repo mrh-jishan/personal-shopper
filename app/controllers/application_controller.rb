@@ -1,5 +1,6 @@
 class ApplicationController < ActionController::Base
   before_action :require_login
+  before_action :load_category
 
   def destroy
     session[:user_id] = nil
@@ -17,5 +18,9 @@ class ApplicationController < ActionController::Base
   def current_user
     user_id = session[:user_id]
     @current_user = User.find_by_id(user_id) unless user_id.nil?
+  end
+
+  def load_category
+    @categories = ProductCategory.all
   end
 end

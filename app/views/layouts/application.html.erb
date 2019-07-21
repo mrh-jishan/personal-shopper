@@ -22,12 +22,30 @@
     </div>
 
     <div id="navbar" class="navbar-collapse collapse">
+      <ul class="nav navbar-nav">
+        <li class="dropdown show">
+          <a class="btn btn-secondary dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            Product Category
+          </a>
+
+          <ul class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+            <% @categories.each do |category| %>
+              <li class="dropdown-item">
+                <%= link_to category.name, root_path(:category => category.id) %>
+              </li>
+            <% end %>
+          </ul>
+        </li>
+
+        <li><%= link_to('Contact Us', '#') %></li>
+      </ul>
+
       <ul class="nav navbar-nav navbar-right">
         <% if @current_user.present? %>
           <li><%= link_to 'My Transactions', transactions_path %></li>
           <li><%= link_to 'My Orders', orders_path %></li>
           <li><%= link_to 'Create Product', new_product_path %></li>
-          <li><%= link_to 'Profile', :controller => 'users', :action => :profile%></li>
+          <li><%= link_to 'Profile', :controller => 'users', :action => :profile %></li>
           <li><%= link_to("Sign out", logout_path) %></li>
         <% end %>
 
