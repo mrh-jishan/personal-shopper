@@ -1,3 +1,15 @@
+# == Schema Information
+#
+# Table name: transactions
+#
+#  id               :bigint           not null, primary key
+#  customer_user_id :bigint
+#  total            :float
+#  status           :boolean
+#  created_at       :datetime         not null
+#  updated_at       :datetime         not null
+#
+
 require 'test_helper'
 
 class TransactionTest < ActiveSupport::TestCase

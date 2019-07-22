@@ -1,3 +1,15 @@
+# == Schema Information
+#
+# Table name: transactions
+#
+#  id               :bigint           not null, primary key
+#  customer_user_id :bigint
+#  total            :float
+#  status           :boolean
+#  created_at       :datetime         not null
+#  updated_at       :datetime         not null
+#
+
 class Transaction < ApplicationRecord
   belongs_to :customer_user, :class_name => 'User'
 
