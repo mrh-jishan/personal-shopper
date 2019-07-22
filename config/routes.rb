@@ -91,6 +91,7 @@ Rails.application.routes.draw do
   get "admin/products/" => "products#products"
   get "admin/transactions/" => "transactions#all"
   get "admin/orders/" => "orders#all"
+  get "admin/users/" => "users#index"
 
 
   resources :transactions

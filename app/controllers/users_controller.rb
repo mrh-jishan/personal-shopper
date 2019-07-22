@@ -1,7 +1,12 @@
 class UsersController < ApplicationController
   skip_before_action :require_login, except: [:profile]
-  before_action :require_login, only: [:edit, :update, :profile]
+  before_action :require_login, only: [:edit, :update, :profile, :index]
   before_action :set_user, only: [:edit, :update, :profile]
+
+
+  def index
+    @users = User.all
+  end
 
   # GET /users/new
   def new

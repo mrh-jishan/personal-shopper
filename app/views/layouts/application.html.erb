@@ -66,12 +66,10 @@
               <ul class="dropdown-menu" aria-labelledby="dropdownMenuLink">
                 <li><%= link_to 'Transactions', :controller => :transactions, :action => :all, :method => :get %></li>
                 <li><%= link_to 'Orders', :controller => :orders, :action => :all, :method => :get %></li>
-
               </ul>
             </li>
-
-
-            <li><%= link_to 'Feedbacks', :controller => :feedbacks, :action => :index, :method => :get %></li>
+            <li><%= link_to 'Users', :controller => :users, :action => :index, :method => :get %></li>
+            <li><%= link_to 'Feedback', :controller => :feedbacks, :action => :index, :method => :get %></li>
           <% else %>
 
             <li>
