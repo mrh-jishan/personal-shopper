@@ -11,5 +11,11 @@
 
 class ProductCategory < ApplicationRecord
   has_many :products
-  validates :name, :active, presence: true
+  validates :name, presence: true
+
+  before_create :set_active
+
+  def set_active
+    self.active = true
+  end
 end

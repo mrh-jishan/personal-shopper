@@ -44,9 +44,33 @@
       <ul class="nav navbar-nav navbar-right">
         <% if @current_user.present? %>
           <% if @current_user.user_type == USER_TYPES[:ADMIN] %>
-            <li><%= link_to 'Products', :controller => :products, :action => :products, :method => :get %></li>
-            <li><%= link_to 'Transactions', :controller => :transactions, :action => :all, :method => :get %></li>
-            <li><%= link_to 'Orders', :controller => :orders, :action => :all, :method => :get %></li>
+
+            <li>
+              <a class="btn btn-secondary dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                Products Management
+              </a>
+
+              <ul class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+                <li><%= link_to 'Products', :controller => :products, :action => :products, :method => :get %></li>
+                <li><%= link_to 'Products Category', :controller => :product_categories, :action => :index, :method => :get %></li>
+
+              </ul>
+            </li>
+
+
+            <li>
+              <a class="btn btn-secondary dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                Order Management
+              </a>
+
+              <ul class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+                <li><%= link_to 'Transactions', :controller => :transactions, :action => :all, :method => :get %></li>
+                <li><%= link_to 'Orders', :controller => :orders, :action => :all, :method => :get %></li>
+
+              </ul>
+            </li>
+
+
             <li><%= link_to 'Feedbacks', :controller => :feedbacks, :action => :index, :method => :get %></li>
           <% else %>
 
