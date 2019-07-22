@@ -9,7 +9,7 @@
 #                           POST   /transactions(.:format)                                                                  transactions#create
 #           new_transaction GET    /transactions/new(.:format)                                                              transactions#new
 #          edit_transaction GET    /transactions/:id/edit(.:format)                                                         transactions#edit
-#               transaction GET    /transactions/:id(.:format)                                                              transactions#show
+#               transaction GET    /transactions/:id(.:format)                                                              transactions#edit
 #                           PATCH  /transactions/:id(.:format)                                                              transactions#update
 #                           PUT    /transactions/:id(.:format)                                                              transactions#update
 #                           DELETE /transactions/:id(.:format)                                                              transactions#destroy
@@ -17,7 +17,7 @@
 #                           POST   /feedbacks(.:format)                                                                     feedbacks#create
 #              new_feedback GET    /feedbacks/new(.:format)                                                                 feedbacks#new
 #             edit_feedback GET    /feedbacks/:id/edit(.:format)                                                            feedbacks#edit
-#                  feedback GET    /feedbacks/:id(.:format)                                                                 feedbacks#show
+#                  feedback GET    /feedbacks/:id(.:format)                                                                 feedbacks#edit
 #                           PATCH  /feedbacks/:id(.:format)                                                                 feedbacks#update
 #                           PUT    /feedbacks/:id(.:format)                                                                 feedbacks#update
 #                           DELETE /feedbacks/:id(.:format)                                                                 feedbacks#destroy
@@ -25,7 +25,7 @@
 #                           POST   /orders(.:format)                                                                        orders#create
 #                 new_order GET    /orders/new(.:format)                                                                    orders#new
 #                edit_order GET    /orders/:id/edit(.:format)                                                               orders#edit
-#                     order GET    /orders/:id(.:format)                                                                    orders#show
+#                     order GET    /orders/:id(.:format)                                                                    orders#edit
 #                           PATCH  /orders/:id(.:format)                                                                    orders#update
 #                           PUT    /orders/:id(.:format)                                                                    orders#update
 #                           DELETE /orders/:id(.:format)                                                                    orders#destroy
@@ -35,7 +35,7 @@
 #                           POST   /products/:product_id/comments(.:format)                                                 comments#create
 #       new_product_comment GET    /products/:product_id/comments/new(.:format)                                             comments#new
 #      edit_product_comment GET    /products/:product_id/comments/:id/edit(.:format)                                        comments#edit
-#           product_comment GET    /products/:product_id/comments/:id(.:format)                                             comments#show
+#           product_comment GET    /products/:product_id/comments/:id(.:format)                                             comments#edit
 #                           PATCH  /products/:product_id/comments/:id(.:format)                                             comments#update
 #                           PUT    /products/:product_id/comments/:id(.:format)                                             comments#update
 #                           DELETE /products/:product_id/comments/:id(.:format)                                             comments#destroy
@@ -43,7 +43,7 @@
 #                           POST   /products/:product_id/orders(.:format)                                                   orders#create
 #         new_product_order GET    /products/:product_id/orders/new(.:format)                                               orders#new
 #        edit_product_order GET    /products/:product_id/orders/:id/edit(.:format)                                          orders#edit
-#             product_order GET    /products/:product_id/orders/:id(.:format)                                               orders#show
+#             product_order GET    /products/:product_id/orders/:id(.:format)                                               orders#edit
 #                           PATCH  /products/:product_id/orders/:id(.:format)                                               orders#update
 #                           PUT    /products/:product_id/orders/:id(.:format)                                               orders#update
 #                           DELETE /products/:product_id/orders/:id(.:format)                                               orders#destroy
@@ -51,7 +51,7 @@
 #                           POST   /products(.:format)                                                                      products#create
 #               new_product GET    /products/new(.:format)                                                                  products#new
 #              edit_product GET    /products/:id/edit(.:format)                                                             products#edit
-#                   product GET    /products/:id(.:format)                                                                  products#show
+#                   product GET    /products/:id(.:format)                                                                  products#edit
 #                           PATCH  /products/:id(.:format)                                                                  products#update
 #                           PUT    /products/:id(.:format)                                                                  products#update
 #                           DELETE /products/:id(.:format)                                                                  products#destroy
@@ -59,7 +59,7 @@
 #                           POST   /product_categories(.:format)                                                            product_categories#create
 #      new_product_category GET    /product_categories/new(.:format)                                                        product_categories#new
 #     edit_product_category GET    /product_categories/:id/edit(.:format)                                                   product_categories#edit
-#          product_category GET    /product_categories/:id(.:format)                                                        product_categories#show
+#          product_category GET    /product_categories/:id(.:format)                                                        product_categories#edit
 #                           PATCH  /product_categories/:id(.:format)                                                        product_categories#update
 #                           PUT    /product_categories/:id(.:format)                                                        product_categories#update
 #                           DELETE /product_categories/:id(.:format)                                                        product_categories#destroy
@@ -67,7 +67,7 @@
 #                           POST   /addresses(.:format)                                                                     addresses#create
 #               new_address GET    /addresses/new(.:format)                                                                 addresses#new
 #              edit_address GET    /addresses/:id/edit(.:format)                                                            addresses#edit
-#                   address GET    /addresses/:id(.:format)                                                                 addresses#show
+#                   address GET    /addresses/:id(.:format)                                                                 addresses#edit
 #                           PATCH  /addresses/:id(.:format)                                                                 addresses#update
 #                           PUT    /addresses/:id(.:format)                                                                 addresses#update
 #                           DELETE /addresses/:id(.:format)                                                                 addresses#destroy
@@ -77,9 +77,9 @@
 #                  sessions POST   /auth/sessions(.:format)                                                                 sessions#create
 #               new_session GET    /auth/sessions/new(.:format)                                                             sessions#new
 #                    logout GET    /auth/logout(.:format)                                                                   application#destroy
-#        rails_service_blob GET    /rails/active_storage/blobs/:signed_id/*filename(.:format)                               active_storage/blobs#show
-# rails_blob_representation GET    /rails/active_storage/representations/:signed_blob_id/:variation_key/*filename(.:format) active_storage/representations#show
-#        rails_disk_service GET    /rails/active_storage/disk/:encoded_key/*filename(.:format)                              active_storage/disk#show
+#        rails_service_blob GET    /rails/active_storage/blobs/:signed_id/*filename(.:format)                               active_storage/blobs#edit
+# rails_blob_representation GET    /rails/active_storage/representations/:signed_blob_id/:variation_key/*filename(.:format) active_storage/representations#edit
+#        rails_disk_service GET    /rails/active_storage/disk/:encoded_key/*filename(.:format)                              active_storage/disk#edit
 # update_rails_disk_service PUT    /rails/active_storage/disk/:encoded_token(.:format)                                      active_storage/disk#update
 #      rails_direct_uploads POST   /rails/active_storage/direct_uploads(.:format)                                           active_storage/direct_uploads#create
 
@@ -104,8 +104,9 @@ Rails.application.routes.draw do
   resources :product_categories
   resources :addresses
 
-  # resource :users, only: [:show]
   get '/profile' => 'users#profile'
+  get '/profile/edit' => 'users#edit'
+  patch '/profile/edit' => 'users#update'
 
   scope :auth do
     resources :users, only: [:new, :create]

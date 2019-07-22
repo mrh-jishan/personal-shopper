@@ -23,7 +23,7 @@ class AddressesControllerTest < ActionDispatch::IntegrationTest
     assert_redirected_to address_url(Address.last)
   end
 
-  test "should show address" do
+  test "should edit address" do
     get address_url(@address)
     assert_response :success
   end

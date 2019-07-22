@@ -23,7 +23,7 @@ class FeedbacksControllerTest < ActionDispatch::IntegrationTest
     assert_redirected_to feedback_url(Feedback.last)
   end
 
-  test "should show feedback" do
+  test "should edit feedback" do
     get feedback_url(@feedback)
     assert_response :success
   end

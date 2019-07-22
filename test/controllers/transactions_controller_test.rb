@@ -23,7 +23,7 @@ class TransactionsControllerTest < ActionDispatch::IntegrationTest
     assert_redirected_to transaction_url(Transaction.last)
   end
 
-  test "should show transaction" do
+  test "should edit transaction" do
     get transaction_url(@transaction)
     assert_response :success
   end

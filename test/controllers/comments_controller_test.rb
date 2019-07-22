@@ -23,7 +23,7 @@ class CommentsControllerTest < ActionDispatch::IntegrationTest
     assert_redirected_to comment_url(Comment.last)
   end
 
-  test "should show comment" do
+  test "should edit comment" do
     get comment_url(@comment)
     assert_response :success
   end

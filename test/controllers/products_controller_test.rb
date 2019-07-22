@@ -23,7 +23,7 @@ class ProductsControllerTest < ActionDispatch::IntegrationTest
     assert_redirected_to product_url(Product.last)
   end
 
-  test "should show product" do
+  test "should edit product" do
     get product_url(@product)
     assert_response :success
   end

@@ -14,12 +14,12 @@
 #
 
 class User < ApplicationRecord
-  validates :name, :email, :gender, :user_type, :password, presence: true
+  validates :name, :email, :gender, :user_type, presence: true
   validates :email, uniqueness: true
   validates :contact, :presence => true, :numericality => true, :length => {:minimum => 10, :maximum => 15}
   validates :email, format: {with: URI::MailTo::EMAIL_REGEXP}
   validates_inclusion_of :gender, :in => %w( Male Female )
-  validates :password, length: {in: 6..20}
+  validates :password, length: {in: 6..20}, :if => :password
   has_secure_password
 
 
@@ -34,7 +34,7 @@ class User < ApplicationRecord
 
   has_many :customer_user, :class_name => 'Transaction', :foreign_key => 'customer_user_id'
 
-  before_save :set_user_type
+  before_save :set_user_type, :unless => :user_type
 
   def user_country
     COUNTRIES.find {|country| country[:code] == self.address.country}
