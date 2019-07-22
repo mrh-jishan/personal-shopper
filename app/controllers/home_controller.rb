@@ -3,6 +3,7 @@ class HomeController < ApplicationController
   before_action :current_user
 
   def index
+    @category = ProductCategory.find(params[:category]) rescue nil
     @products = Product.where(:product_category => ProductCategory.find(params[:category])) rescue Product.all
     @products = @products.where(:status => PRODUCT_STATUS[:APPROVED])
   end

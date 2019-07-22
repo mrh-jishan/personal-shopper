@@ -42,6 +42,14 @@
 
   <% end %>
 
+  <% if params[:category] %>
+    <h1 class="text-center">Product Category:
+      <%=@category.name %>
+    </h1>
+  <% end %>
+
+  <hr>
+
   <div class="row">
     <p id="notice" class="text-center"><%= notice %></p>
 
