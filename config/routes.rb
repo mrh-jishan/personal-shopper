@@ -89,6 +89,8 @@ Rails.application.routes.draw do
   get "contact" => "home#new"
   post "contact" => "home#create"
   get "admin/products/" => "products#products"
+  get "admin/transactions/" => "transactions#all"
+  get "admin/orders/" => "orders#all"
 
 
   resources :transactions

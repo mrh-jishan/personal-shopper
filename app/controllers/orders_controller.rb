@@ -16,6 +16,11 @@ class OrdersController < ApplicationController
     @transaction.customer_user = @current_user
   end
 
+
+  def all
+    @orders = Order.all
+  end
+
   # GET /orders/1
   # GET /orders/1.json
   def show

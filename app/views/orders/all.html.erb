@@ -1,0 +1,31 @@
+<div class="col-md-7">
+  <p id="notice"><%= notice %></p>
+
+
+  <div class="panel panel-default">
+    <div class="panel-heading">All Orders</div>
+    <table class="table">
+      <thead>
+      <tr>
+        <th>Product Name</th>
+        <th>Price</th>
+        <th>Buyer</th>
+        <th>Customer</th>
+        <th>Status</th>
+      </tr>
+      </thead>
+
+      <tbody>
+      <% @orders.each do |order| %>
+        <tr>
+          <td><%= order.product.name %></td>
+          <td><%= order.product.price %></td>
+          <td><%= order.user_buyer.name %></td>
+          <td><%= order.user_customer.name %></td>
+          <td><%= order.order_status %></td>
+        </tr>
+      <% end %>
+      </tbody>
+    </table>
+  </div>
+</div>

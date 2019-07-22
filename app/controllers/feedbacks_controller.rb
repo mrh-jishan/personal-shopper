@@ -1,6 +1,7 @@
 class FeedbacksController < ApplicationController
-  skip_before_action :require_login
+  skip_before_action :require_login, only: [:create, :new]
   before_action :set_feedback, only: [:show, :edit, :update, :destroy]
+  before_action :require_login, only: [:index]
 
   # GET /feedbacks
   # GET /feedbacks.json
@@ -29,7 +30,7 @@ class FeedbacksController < ApplicationController
 
     respond_to do |format|
       if @feedback.save
-        format.html {redirect_to @feedback, notice: 'Feedback was successfully created.'}
+        format.html {redirect_to feedbacks_path, notice: 'Feedback was successfully created.'}
         format.json {render :show, status: :created, location: @feedback}
       else
         format.html {render :new}

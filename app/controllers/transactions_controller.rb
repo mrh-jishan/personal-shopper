@@ -8,6 +8,11 @@ class TransactionsController < ApplicationController
     @transactions = Transaction.where(:customer_user => @current_user)
   end
 
+
+  def all
+    @transactions = Transaction.all
+  end
+
   # GET /transactions/1
   # GET /transactions/1.json
   def show
