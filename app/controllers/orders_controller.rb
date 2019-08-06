@@ -2,6 +2,7 @@ class OrdersController < ApplicationController
   before_action :require_login
   before_action :set_order, only: [:show, :edit, :update, :destroy]
   before_action :set_product, only: [:new, :create]
+  before_action :set_order, only: [:deliver]
 
   # GET /orders
   # GET /orders.json
@@ -16,6 +17,11 @@ class OrdersController < ApplicationController
     @transaction.customer_user = @current_user
   end
 
+
+  def deliver
+    @order.update_columns(status: ORDER_STATUES[:BUYER_DELIVERED])
+    redirect_to orders_path, notice: 'Order was successfully delivered'
+  end
 
   def all
     @orders = Order.all
@@ -90,6 +96,10 @@ class OrdersController < ApplicationController
 
   def set_product
     @product = Product.find(params[:product_id])
+  end
+
+  def set_order
+    @order = Order.find(params[:order_id])
   end
 
   # Never trust parameters from the scary internet, only allow the white list through.

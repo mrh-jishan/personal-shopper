@@ -96,7 +96,10 @@ Rails.application.routes.draw do
 
   resources :transactions
   resources :feedbacks
-  resources :orders
+
+  resources :orders do
+    put :deliver, :to => "orders#deliver"
+  end
 
   resources :products do
     put :approve, :to => "products#approve"
