@@ -23,13 +23,10 @@
           <td><%= order.user_buyer.name %></td>
           <td><%= order.user_customer.name %></td>
           <td><%= order.order_status %></td>
-          <%# if order.status == ORDER_STATUES[:PAID] %>
-          <!--            <td><%#= link_to 'Deliver Order', order, method: :delete, data: {confirm: 'Are you sure?'}, :class => 'btn btn-info btn-sm' %></td>-->
-          <%# end %>
 
-          <%# if order.status == ORDER_STATUES[:CREATED] %>
-          <!--            <td><%#= link_to 'Delete Order', order, method: :delete, data: {confirm: 'Are you sure?'}, :class => 'btn btn-danger btn-sm' %></td>-->
-          <%# end %>
+          <% if order.status == ORDER_STATUES[:BUYER_DELIVERED] && order.user_customer == @current_user %>
+            <td><%= link_to 'Order Received', order_received_path(order), method: :put, :action => :received, data: {confirm: 'Are you sure?'}, :class => 'btn btn-info btn-sm' %></td>
+          <% end %>
         </tr>
       <% end %>
       </tbody>

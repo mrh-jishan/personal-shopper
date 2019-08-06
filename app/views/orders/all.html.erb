@@ -23,6 +23,11 @@
           <td><%= order.user_buyer.name %></td>
           <td><%= order.user_customer.name %></td>
           <td><%= order.order_status %></td>
+
+          <% if order.status == ORDER_STATUES[:CUSTOMER_REVEIVED] %>
+            <td><%= link_to 'Acknowledged Order', order_acknowledged_path(order), method: :put, :action => :acknowledged, data: {confirm: 'Are you sure?'}, :class => 'btn btn-info btn-sm' %></td>
+          <% end %>
+
         </tr>
       <% end %>
       </tbody>

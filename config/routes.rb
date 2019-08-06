@@ -99,6 +99,8 @@ Rails.application.routes.draw do
 
   resources :orders do
     put :deliver, :to => "orders#deliver"
+    put :received, :to => "orders#received"
+    put :acknowledged, :to => "orders#acknowledged"
   end
 
   resources :products do

@@ -2,7 +2,7 @@ class OrdersController < ApplicationController
   before_action :require_login
   before_action :set_order, only: [:show, :edit, :update, :destroy]
   before_action :set_product, only: [:new, :create]
-  before_action :set_order, only: [:deliver]
+  before_action :set_order, only: [:deliver, :received, :acknowledged]
 
   # GET /orders
   # GET /orders.json
@@ -21,6 +21,16 @@ class OrdersController < ApplicationController
   def deliver
     @order.update_columns(status: ORDER_STATUES[:BUYER_DELIVERED])
     redirect_to orders_path, notice: 'Order was successfully delivered'
+  end
+
+  def received
+    @order.update_columns(status: ORDER_STATUES[:CUSTOMER_REVEIVED])
+    redirect_to orders_path, notice: 'Order was successfully received'
+  end
+
+  def acknowledged
+    @order.update_columns(status: ORDER_STATUES[:ADMIN_ACKNOWLEDGED])
+    redirect_to admin_orders_path, notice: 'Order was successfully acknowledged'
   end
 
   def all
