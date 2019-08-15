@@ -11,9 +11,11 @@ class OrdersController < ApplicationController
     @unpaid_orders = Order.where(:user_customer => @current_user, :status => ORDER_STATUES[:CREATED])
 
     @my_orders = Order.where(:user_buyer => @current_user).or(Order.where(:user_customer => @current_user))
+    @my_orders = @my_orders.select { |order| params[:search].in? order.product.name } rescue @my_orders
+
 
     @transaction = Transaction.new
-    @transaction.total = @unpaid_orders.inject(0) {|sum, e| sum + e.product.price}
+    @transaction.total = @unpaid_orders.inject(0) { |sum, e| sum + e.product.price }
     @transaction.customer_user = @current_user
   end
 
@@ -64,11 +66,11 @@ class OrdersController < ApplicationController
       if @order.save
         @product.update_columns(status: PRODUCT_STATUS[:PICK_UP])
 
-        format.html {redirect_to orders_path, notice: 'Order was successfully created.'}
-        format.json {render :show, status: :created, location: @order}
+        format.html { redirect_to orders_path, notice: 'Order was successfully created.' }
+        format.json { render :show, status: :created, location: @order }
       else
-        format.html {render :new}
-        format.json {render json: @order.errors, status: :unprocessable_entity}
+        format.html { render :new }
+        format.json { render json: @order.errors, status: :unprocessable_entity }
       end
     end
   end
@@ -78,11 +80,11 @@ class OrdersController < ApplicationController
   def update
     respond_to do |format|
       if @order.update(order_params)
-        format.html {redirect_to @order, notice: 'Order was successfully updated.'}
-        format.json {render :show, status: :ok, location: @order}
+        format.html { redirect_to @order, notice: 'Order was successfully updated.' }
+        format.json { render :show, status: :ok, location: @order }
       else
-        format.html {render :edit}
-        format.json {render json: @order.errors, status: :unprocessable_entity}
+        format.html { render :edit }
+        format.json { render json: @order.errors, status: :unprocessable_entity }
       end
     end
   end
@@ -92,8 +94,8 @@ class OrdersController < ApplicationController
   def destroy
     @order.destroy
     respond_to do |format|
-      format.html {redirect_to orders_url, notice: 'Order was successfully destroyed.'}
-      format.json {head :no_content}
+      format.html { redirect_to orders_url, notice: 'Order was successfully destroyed.' }
+      format.json { head :no_content }
     end
   end
 
